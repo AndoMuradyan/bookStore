@@ -83,5 +83,11 @@
             <column type="varchar(255)" name="verify_token"/>
         </addColumn>
     </changeSet>
+    
+    <changeSet id="addAmountToOrderBook" author="amuradyan">
+        <addColumn tableName="book_order">
+            <column name="amount" type="double"/>
+        </addColumn>
+    </changeSet>
 
 </databaseChangeLog>

@@ -14,7 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "book_orders")
+@Table(name = "book_order")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,4 +26,5 @@ public class Order {
     private User user;
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date orderDateTime;
+    private double amount;
 }

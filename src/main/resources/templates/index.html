@@ -5,24 +5,27 @@
     <title>Index</title>
 </head>
 <body>
-<a th:if="${currentUser == null}" href="/login">Login</a>
-<a th:if="${currentUser != null}" href="/logout">Logout</a>
-<span th:if="${currentUser != null}" th:text="Welcome + ${currentUser.name}"></span>
-<a th:if="${currentUser == null}" href="/register">Register</a>
+<a th:if="${currentUser == null}" href="/login">Login</a>   |
+<a th:if="${currentUser != null}" href="/logout">Logout</a>   |
+<span th:if="${currentUser != null}" th:text="Welcome +' '+ ${currentUser.name}"></span>
+<a th:if="${currentUser == null}" href="/register">Register</a>  |
+<a href="/">HOME</a>
+<a th:if="${currentUser != null && currentUser.userRole.name == 'ADMIN'}" href="/admin">Admin Panel</a>
+<a th:if="${currentUser != null}" href="/myOrders">My Orders</a>
+
+
 Books:
-<table>
+<table border="1px">
     <tr>
         <th>title</th>
         <th>price</th>
         <th>action</th>
     </tr>
     <tr th:each="book: ${books}">
-        <td th:text="${book.title}"></td>
+        <td> <a th:href="@{'/book/' + ${book.id}}" th:text="${book.title}"></a></td>
         <td th:text="${book.price}"></td>
         <td>
-            <a th:if="${currentUser != null}" th:href="@{/order(bookId=${book.id})}">Order</a>
-            <a th:if="${currentUser != null && currentUser.userRole.name == 'ADMIN'}" th:href="@{/book/remove(bookId=${book.id})}">Remove</a>
-            <a th:if="${currentUser != null && currentUser.userRole.name == 'ADMIN'}" th:href="@{/book/edit(bookId=${book.id})}">Edit</a>
+            <a th:if="${currentUser != null}" th:href="@{/order/new(bookId=${book.id})}">Order</a>
         </td>
     </tr>
 </table>
